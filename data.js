@@ -38,8 +38,7 @@ export const properties = [
     location: "Alagbaka",
     houseType: "Apartment",
     price: 1000000,
-    bedrooms: 3,
-    bathrooms: 2,
+    summary: "3 bedrooms and 2 bathrooms",
     images: [compoundImg, kitchen2Img, bedroom2Img],
   },
   {
@@ -48,8 +47,7 @@ export const properties = [
     location: "Ijapo Estate",
     houseType: "Bungalow",
     price: 750000,
-    bedrooms: 2,
-    bathrooms: 2,
+    summary: "2 bedrooms and 2 bathrooms",
     images: [livingRoom3Img, bedroom1Img, restRoom1Img],
   },
 ];

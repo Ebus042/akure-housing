@@ -17,8 +17,11 @@ const PropertySection = () => {
     }
   }, [filters]);
 
+  const hasActiveFilters =
+    filters && (filters.location || filters.type || filters.price);
+
   const filteredProperties = properties.filter((property) => {
-    if (!filters) return true;
+    if (!hasActiveFilters) return false;
 
     const matchesLocation =
       !filters.location || property.location === filters.location;
@@ -51,7 +54,7 @@ const PropertySection = () => {
 
       <div className="md:grid">
         <div className="mx-auto w-72 grid md:grid-cols-2 md:w-[750px] md:gap-10">
-          {hasSearched &&
+          {hasActiveFilters &&
             filteredProperties.map((property) => (
               <div
                 key={property.id}
@@ -83,9 +86,9 @@ const PropertySection = () => {
                 </div>
               </div>
             ))}
-          {!hasSearched && (
+          {!hasActiveFilters && (
             <p className="text-center text-gray-500 mt-10">
-              Please use the search filters to find properties.
+              Please use the search filters above to find properties.
             </p>
           )}
         </div>
@@ -95,33 +98,3 @@ const PropertySection = () => {
 };
 
 export default PropertySection;
-
-//               />
-//               <div className="px-3">
-//                 <h3 className="text-xl font-bold my-2">{content.houseType}</h3>
-//                 <p className="text-green-900 font-bold text-lg">
-//                   {content.price}
-//                   <span className="text-black font-normal"> per year</span>
-//                 </p>
-//                 <span>{content.summary}</span> */}
-//                 <button
-//                   onClick={handleLoading}
-//                   disabled={loading}
-//                   className={`w-full py-2 mt-4 rounded-md text-white
-//                    ${loading ? "bg-gray-400 cursor-not-allowed" : "bg-green-900"}`}
-//                 >
-//                   {loading ? "Loading..." : "View Details"}
-//                 </button>
-//                 <p className="my-1 text-sm text-center">
-//                   ✅ No Payment before Inspection
-//                 </p>
-//               </div>
-//             </div>
-//           {/* ))} */}
-//         {/* </div> */}
-//       {/* </div> */}
-//     </section>
-//   );
-// };
-
-// export default PropertySection;
