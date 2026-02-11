@@ -1,5 +1,5 @@
 import { moreImages } from "../../../data";
-import { ChevronRight, CirclePlus, LocateIcon } from "lucide-react";
+import { Bath, Bed, ChevronRight, CirclePlus, LocateIcon } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 
@@ -50,6 +50,14 @@ const PropertySelected = () => {
             <div className="flex items-center gap-1 my-2 text-xl">
               <LocateIcon className="h-6 w-6 text-green-900" />
               <p>Alagbaka, Akure</p>
+            </div>
+            <div className="flex items-center gap-1 my-2 text-xl">
+              <Bed className="h-6 w-6 text-green-900" />
+              <p className="text-xl">3 Bedrooms</p>
+            </div>
+            <div className="flex items-center gap-1 my-2 text-xl">
+              <Bath className="h-6 w-6 text-green-900" />
+              <p className="text-xl">2 Bathrooms</p>
             </div>
 
             <div className="flex items-center gap-1">

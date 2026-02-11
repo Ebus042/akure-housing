@@ -14,7 +14,7 @@ const PropertySection = () => {
   }
   return (
     <section>
-      <div className="mx-4 my-10 md:text-center">
+      <div className="mx-10 my-10 md:text-center">
         <h2 className="text-2xl font-bold my-2">Houses for Rent in Akure</h2>
         <p>Browse the best rental properties in town</p>
       </div>

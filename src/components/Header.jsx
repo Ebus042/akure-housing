@@ -3,8 +3,8 @@ import React from "react";
 
 const Header = () => {
   return (
-    <header className="my-2 md:mx-10">
-      <nav className=" flex items-center justify-between">
+    <header className="my-2 md:mx-10 mx-2">
+      <nav className=" flex items-center justify-between gap-5">
         <div className="flex items-center gap-2 font-bold">
           <Home size={24} className="md:hidden text-green-800" />
           <Home size={32} className="hidden md:block text-green-800" />
