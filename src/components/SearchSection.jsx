@@ -1,4 +1,45 @@
+import { useState } from "react";
+import { properties } from "../../data";
+import { useNavigate } from "react-router-dom";
+
 const SearchSection = () => {
+  // const [loading, setLoading] = useState(false);
+  const [filter, setFilter] = useState(null);
+  const [selectedLocation, setSelectedLocation] = useState("");
+  const [selectedPriceRange, setSelectedPriceRange] = useState("");
+  const [selectedType, setSelectedType] = useState("");
+  // const navigate = useNavigate();
+  const navigate = useNavigate();
+
+  const handleSearch = () => {
+    navigate("/", {
+      state: {
+        location: selectedLocation,
+        type: selectedType,
+        price: selectedPriceRange,
+      },
+    });
+  };
+
+  const handleFilterChange = (e) => {
+    setFilter(e.target.value);
+    setSelectedLocation("");
+    setSelectedPriceRange("");
+    setSelectedType("");
+  };
+
+  const filteredProperties = properties.filter((property) => {
+    if (filter === "location") {
+      return property.location === selectedLocation;
+    }
+    if (filter === "price") {
+      return property.price === selectedPriceRange;
+    }
+    if (filter === "type") {
+      return property.houseType === selectedType;
+    }
+    return true;
+  });
   return (
     <section>
       <h1 className="text-center text-2xl font-bold my-10">
@@ -10,45 +51,48 @@ const SearchSection = () => {
       >
         <div>
           <select
-            name="location"
-            id=""
-            className="w-[150px] p-2 border-2  text-lg"
+            className="w-[150px] p-2 border-2 text-lg"
+            value={selectedLocation}
+            onChange={(e) => setSelectedLocation(e.target.value)}
           >
             <option value="">Location</option>
-            <option value="">Alagbaka</option>
-            <option value="">Ijapo Estate</option>
-            <option value="">Alagbaka Extension</option>
-            <option value="">Ijapo Extension</option>
-            <option value="">Oba Ile</option>
+            <option value="Alagbaka">Alagbaka</option>
+            <option value="Ijapo Estate">Ijapo</option>
+            <option value="Oba Ile">Oba Ile</option>
           </select>
         </div>
 
         <div>
-          <select name="Type" id="" className="w-[150px] p-2 border-2 text-lg">
+          <select
+            className="w-[150px] p-2 border-2 text-lg"
+            value={selectedType}
+            onChange={(e) => setSelectedType(e.target.value)}
+          >
             <option value="">House Type</option>
-            <option value="">A Room Self Con</option>
-            <option value="">1 bedroom</option>
-            <option value="">2 bedroom</option>
-            <option value="">3 bedroom</option>
-            <option value="">4 bedroom or more</option>
+            <option value="A Room Self Con">A Room Self Con</option>
+            <option value="1 bedroom">1 bedroom</option>
+            <option value="2 bedroom">2 bedroom</option>
+            <option value="Apartment">Apartment</option>
+            <option value="Bungalow">Bungalow</option>
+
+            <option value="4 bedroom or more">4 bedroom or more</option>
           </select>
         </div>
         <div>
           <select
-            name="Price range"
-            id=""
-            className="w-[150px] p-2 border-2  text-lg"
+            className="w-[150px] p-2 border-2 text-lg"
+            value={selectedPriceRange}
+            onChange={(e) => setSelectedPriceRange(e.target.value)}
           >
             <option value="">Price Range</option>
-            <option value="">100k - 350k</option>
-            <option value="">400k - 650k</option>
-            <option value="">700k - 1m</option>
-            <option value="">1.2m - 2m</option>
-            <option value="">2.4m - 4m</option>
+            <option value="0-350000">100k - 350k</option>
+            <option value="400000-650000">400k - 650k</option>
+            <option value="700000-1000000">700k - 1m</option>
           </select>
         </div>
 
         <button
+          onClick={handleSearch}
           className=" text-xl border-2 w-[150px]
          bg-green-900 px-4 py-1 text-white rounded-md"
         >
