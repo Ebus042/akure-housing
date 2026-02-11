@@ -1,7 +1,18 @@
 import { moreImages } from "../../../data";
 import { ChevronRight, CirclePlus, LocateIcon } from "lucide-react";
+import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 
 const PropertySelected = () => {
+  const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
+
+  function handleLoading() {
+    setLoading(true);
+    setTimeout(() => {
+      navigate("/book-inspection");
+    }, 1000);
+  }
   return (
     <section className="mx-5">
       <div className="my-10">
@@ -60,10 +71,12 @@ const PropertySelected = () => {
       </div>
       <div>
         <button
-          className="bg-green-900 px-4 py-1 text-white
-      block mx-auto w-52 my-3 text-lg font-bold rounded-md"
+          onClick={handleLoading}
+          disabled={loading}
+          className={`w-full py-2 mt-4 rounded-md text-white
+                   ${loading ? "bg-gray-400 cursor-not-allowed" : "bg-green-900"}`}
         >
-          Book Inspection
+          {loading ? "Loading..." : "Book Inspection"}
           <ChevronRight className="w-5 h-5 text-white inline-block mx-2" />
         </button>
       </div>

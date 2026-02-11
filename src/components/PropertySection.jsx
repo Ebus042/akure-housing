@@ -1,8 +1,17 @@
+import { useState } from "react";
 import { homeImages } from "../../data";
 import { useNavigate } from "react-router-dom";
 
 const PropertySection = () => {
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
+
+  function handleLoading() {
+    setLoading(true);
+    setTimeout(() => {
+      navigate("/property");
+    }, 2000);
+  }
   return (
     <section>
       <div className="mx-4 my-10 md:text-center">
@@ -30,11 +39,12 @@ const PropertySection = () => {
                 </p>
                 <span>{content.summary}</span>
                 <button
-                  onClick={() => navigate("/property")}
-                  className="block text-lg my-5 border-2 w-[150px]
-         bg-green-900 px-4 py-1 text-white rounded-md mx-auto"
+                  onClick={handleLoading}
+                  disabled={loading}
+                  className={`w-full py-2 mt-4 rounded-md text-white
+                   ${loading ? "bg-gray-400 cursor-not-allowed" : "bg-green-900"}`}
                 >
-                  View Details
+                  {loading ? "Loading..." : "View Details"}
                 </button>
                 <p className="my-1 text-sm text-center">
                   ✅ No Payment before Inspection

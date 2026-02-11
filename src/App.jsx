@@ -6,6 +6,7 @@ import Header from "./components/Header";
 import SearchSection from "./components/SearchSection";
 import PropertySection from "./components/PropertySection";
 import PropertyDetailsSection from "./components/property/PropertyDetailsSection";
+import BookInpection from "./components/booking/BookInpection";
 
 const HeaderLayout = () => (
   <>
@@ -25,6 +26,7 @@ function App() {
           <Route path="/" element={<PropertySection />} />
         </Route>
         <Route path="/property" element={<PropertyDetailsSection />} />
+        <Route path="/book-inspection" element={<BookInpection />} />
       </Routes>
     </BrowserRouter>
   );
