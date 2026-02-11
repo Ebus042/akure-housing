@@ -1,3 +1,4 @@
+import { ChevronRight } from "lucide-react";
 import React from "react";
 
 const BookingForm = () => {
@@ -84,10 +85,11 @@ const BookingForm = () => {
         </div>
         <button
           type="submit"
-          className="block text-lg font-bold my-5 border-2 w-[200px]
+          className="block text-lg font-bold my-5 border-2 w-[300px]
          bg-green-900 px-4 py-1 text-white rounded-md mx-auto"
         >
-          Book Inspection
+          Confirm Appointment
+          <ChevronRight className="w-5 h-5 text-white inline-block mx-2" />
         </button>
       </form>
     </div>
