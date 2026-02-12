@@ -17,7 +17,7 @@ import kitchen4Img from "./src/assets/images/Kitchen-2.jpg";
 import bedroom2Img from "./src/assets/images/Bedroom-4.jpg";
 import bedroom4Img from "./src/assets/images/Bedroom-2.jpg";
 import bedroom3Img from "./src/assets/images/Bedroom-3.jpg";
-import bedroom5Img from "./assets/images/Bedroom-5.jpg";
+import bedroom5Img from "./src/assets/images/Bedroom-5.jpg";
 // import livingroom10 from '../assets/images/Living-room-10.jpg';
 
 // export const moreImages = [
