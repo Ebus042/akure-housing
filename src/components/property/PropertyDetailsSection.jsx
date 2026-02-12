@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 
 const PropertyDetailsSection = () => {
   const navigate = useNavigate();
+
   return (
     <section>
       <header className="flex gap-8 my-3 mx-3">

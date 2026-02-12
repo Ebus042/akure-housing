@@ -25,7 +25,7 @@ function App() {
 
           <Route path="/" element={<PropertySection />} />
         </Route>
-        <Route path="/property" element={<PropertyDetailsSection />} />
+        <Route path="/property/:id" element={<PropertyDetailsSection />} />
         <Route path="/book-inspection" element={<BookInpection />} />
       </Routes>
     </BrowserRouter>

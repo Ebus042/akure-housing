@@ -4,7 +4,8 @@ import { useNavigate } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 
 const PropertySection = () => {
-  const [loading, setLoading] = useState(false);
+  const [loadingId, setLoadingId] = useState(null);
+
   const navigate = useNavigate();
   const [hasSearched, setHasSearched] = useState(false);
 
@@ -18,33 +19,40 @@ const PropertySection = () => {
   }, [filters]);
 
   const hasActiveFilters =
-    filters && (filters.location || filters.type || filters.price);
+    filters && filters.location && filters.type && filters.price;
 
   const filteredProperties = properties.filter((property) => {
     if (!hasActiveFilters) return false;
 
-    const matchesLocation =
-      !filters.location || property.location === filters.location;
+    // Location
+    if (filters.location && property.location !== filters.location) {
+      return false;
+    }
 
-    const matchesType = !filters.type || property.houseType === filters.type;
+    // Type
+    if (filters.type && property.houseType !== filters.type) {
+      return false;
+    }
 
-    const matchesPrice = (() => {
-      if (!filters.price) return true;
-
+    // Price
+    if (filters.price) {
       const [min, max] = filters.price.split("-").map(Number);
 
-      return property.price >= min && property.price <= max;
-    })();
+      if (property.price < min || property.price > max) {
+        return false;
+      }
+    }
 
-    return matchesLocation && matchesType && matchesPrice;
+    return true;
   });
 
-  function handleLoading() {
-    setLoading(true);
+  function handleLoading(id) {
+    setLoadingId(id);
     setTimeout(() => {
-      navigate("/property");
-    }, 2000);
+      navigate(`/property/${id}`);
+    }, 800);
   }
+
   return (
     <section>
       <div className="mx-10 my-10 md:text-center">
@@ -58,11 +66,11 @@ const PropertySection = () => {
             filteredProperties.map((property) => (
               <div
                 key={property.id}
-                className="grid border-2 my-5 rounded-t-xl overflow-hidden gap-10"
+                className="grid border-2 my-5  rounded-t-xl overflow-hidden gap-10"
               >
                 <img
                   src={property.images[0]}
-                  className="w-72 md:w-[750px]"
+                  className="w-full aspect-[4/3] md:w-full object-cover"
                   alt="image of a house compound"
                 />
                 <div className="px-3">
@@ -73,12 +81,12 @@ const PropertySection = () => {
                   </p>
                   <span>{property.summary}</span>
                   <button
-                    onClick={handleLoading}
-                    disabled={loading}
+                    onClick={() => handleLoading(property.id)}
+                    disabled={loadingId === property.id}
                     className={`w-full py-2 mt-4 rounded-md text-white
-                   ${loading ? "bg-gray-400 cursor-not-allowed" : "bg-green-900"}`}
+                   ${loadingId === property.id ? "bg-gray-400 cursor-not-allowed" : "bg-green-900"}`}
                   >
-                    {loading ? "Loading..." : "View Details"}
+                    {loadingId === property.id ? "Loading..." : "View Details"}
                   </button>
                   <p className="my-1 text-sm text-center">
                     ✅ No Payment before Inspection
@@ -89,6 +97,12 @@ const PropertySection = () => {
           {!hasActiveFilters && (
             <p className="text-center text-gray-500 mt-10">
               Please use the search filters above to find properties.
+            </p>
+          )}
+          {hasActiveFilters && filteredProperties.length === 0 && (
+            <p className="text-center text-red-500 mt-10 col-span-full">
+              No {filters.type} available in {filters.location} within this
+              price range.
             </p>
           )}
         </div>
