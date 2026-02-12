@@ -1,24 +1,24 @@
-import compoundImg from "./src/assets/images/Compound 2.jpg";
-import compoundImg1 from "./src/assets/images/Compound 1.jpg";
-import kitchen1Img from "./src/assets/images/Kitchen 1.jpg";
-import livingRoom1Img from "./src/assets/images/Living room 1.jpg";
-import livingRoom6Img from "./src/assets/images/Living room 6.jpg";
-import livingRoom5Img from "./src/assets/images/Living room 5.jpg";
-import bedroom1Img from "./src/assets/images/Bedroom 1.jpg";
-import livingRoom3Img from "./src/assets/images/Living room 3.jpg";
-import restRoom1Img from "./src/assets/images/Rest room 3.jpg";
-import restRoom2Img from "./src/assets/images/Rest room 2.jpg";
-import restRoom9Img from "./src/assets/images/Rest room 9.jpg";
-import restRoom7Img from "./src/assets/images/Rest room 7.jpg";
-import restRoom8Img from "./src/assets/images/Rest room 8.jpg";
-import kitchen2Img from "./src/assets/images/Kitchen 4.jpg";
-import kitchen3Img from "./src/assets/images/Kitchen 3.jpg";
-import kitchen5Img from "./src/assets/images/Kitchen 5.jpg";
-import kitchen4Img from "./src/assets/images/Kitchen 2.jpg";
-import bedroom2Img from "./src/assets/images/Bedroom 4.jpg";
-import bedroom4Img from "./src/assets/images/Bedroom 2.jpg";
-import bedroom3Img from "./src/assets/images/Bedroom 3.jpg";
-import bedroom5Img from "./src/assets/images/Bedroom 5.jpg";
+import compoundImg from "./src/assets/images/Compound-2.jpg";
+import compoundImg1 from "./src/assets/images/Compound-1.jpg";
+import kitchen1Img from "./src/assets/images/Kitchen-1.jpg";
+import livingRoom1Img from "./src/assets/images/Living-room-1.jpg";
+import livingRoom6Img from "./src/assets/images/Living-room-6.jpg";
+import livingRoom5Img from "./src/assets/images/Living-room-5.jpg";
+import bedroom1Img from "./src/assets/images/Bedroom-1.jpg";
+import livingRoom3Img from "./src/assets/images/Living-room-3.jpg";
+import restRoom1Img from "./src/assets/images/Rest-room-3.jpg";
+import restRoom2Img from "./src/assets/images/Rest-room-2.jpg";
+import restRoom9Img from "./src/assets/images/Rest-room-9.jpg";
+import restRoom7Img from "./src/assets/images/Rest-room-7.jpg";
+import restRoom8Img from "./src/assets/images/Rest-room-8.jpg";
+import kitchen2Img from "./src/assets/images/Kitchen-4.jpg";
+import kitchen3Img from "./src/assets/images/Kitchen-3.jpg";
+import kitchen5Img from "./src/assets/images/Kitchen-5.jpg";
+import kitchen4Img from "./src/assets/images/Kitchen-2.jpg";
+import bedroom2Img from "./src/assets/images/Bedroom-4.jpg";
+import bedroom4Img from "./src/assets/images/Bedroom-2.jpg";
+import bedroom3Img from "./src/assets/images/Bedroom-3.jpg";
+import bedroom5Img from "./src/assets/images/Bedroom-5.jpg";
 
 // export const moreImages = [
 //   { id: 0, image5: compoundImg },
