@@ -6,7 +6,6 @@ import livingRoom6Img from "./src/assets/images/Living-room-6.jpg";
 import livingRoom5Img from "./src/assets/images/Living-room-5.jpg";
 import bedroom1Img from "./src/assets/images/Bedroom-1.jpg";
 import livingRoom3Img from "./src/assets/images/Living-room-3.jpg";
-import restRoom1Img from "./src/assets/images/Rest-room-3.jpg";
 import restRoom2Img from "./src/assets/images/Rest-room-2.jpg";
 import restRoom9Img from "./src/assets/images/Rest-room-9.jpg";
 import restRoom7Img from "./src/assets/images/Rest-room-7.jpg";
@@ -98,7 +97,7 @@ export const properties = [
     bed: "1 Bedroom",
     bath: "1 Bathroom",
     summary: "1 bedroom and 1 bathroom",
-    images: [livingRoom1Img, kitchen5Img, bedroom3Img, restRoom1Img],
+    images: [livingRoom1Img, kitchen5Img, bedroom3Img, restRoom8Img],
   },
   {
     id: 5,
@@ -122,7 +121,7 @@ export const properties = [
     bed: "2 Bedrooms",
     bath: "2 Bathrooms",
     summary: "2 bedrooms and 2 bathrooms",
-    images: [livingRoom6Img, kitchen3Img, bedroom5Img, restRoom1Img],
+    images: [livingRoom6Img, kitchen3Img, bedroom5Img, restRoom9Img],
   },
   {
     id: 7,
