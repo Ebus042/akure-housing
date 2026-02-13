@@ -8,20 +8,35 @@ const SearchSection = () => {
   const [selectedPriceRange, setSelectedPriceRange] = useState("");
   const [selectedType, setSelectedType] = useState("");
 
+  // const handleSearch = () => {
+  //   // Prevent empty search
+  //   if (!selectedLocation && !selectedType && !selectedPriceRange) {
+  //     alert("Please select at least one filter.");
+  //     return;
+  //   }
+
+  //   navigate("/home", {
+  //     state: {
+  //       location: selectedLocation,
+  //       type: selectedType,
+  //       price: selectedPriceRange,
+  //     },
+  //   });
+  // };
+
   const handleSearch = () => {
-    // Prevent empty search
     if (!selectedLocation && !selectedType && !selectedPriceRange) {
       alert("Please select at least one filter.");
       return;
     }
 
-    navigate("/", {
-      state: {
-        location: selectedLocation,
-        type: selectedType,
-        price: selectedPriceRange,
-      },
-    });
+    const query = new URLSearchParams();
+
+    if (selectedLocation) query.append("location", selectedLocation);
+    if (selectedType) query.append("type", selectedType);
+    if (selectedPriceRange) query.append("price", selectedPriceRange);
+
+    navigate(`/home?${query.toString()}`);
   };
 
   return (

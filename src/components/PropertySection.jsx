@@ -1,43 +1,55 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { properties } from "../../data";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 
 const PropertySection = () => {
   const [loadingId, setLoadingId] = useState(null);
   const navigate = useNavigate();
-  const location = useLocation();
+  const [searchParams] = useSearchParams();
 
-  // Filters passed from SearchSection
-  const filters = location.state;
+  useEffect(() => {
+    if (locationParam && typeParam && priceParam) {
+      navigate("/home", { replace: true });
+    }
+  }, []);
 
-  // 🔹 If page is refreshed or opened directly without filters
-  if (!filters) {
+  const locationParam = searchParams.get("location");
+  const typeParam = searchParams.get("type");
+  const priceParam = searchParams.get("price");
+
+  // If page opened without filters
+  if (!locationParam || !typeParam || !priceParam) {
     return (
       <section>
         <div className="mx-10 my-10 md:text-center">
           <h2 className="text-2xl font-bold my-2">Houses for Rent in Akure</h2>
-          <p>Browse the best rental properties in town</p>
+          <p>Please select location, house type and price range.</p>
         </div>
-
-        <p className="text-center text-gray-500 mt-10">
-          Please use the search filters above to find properties.
-        </p>
       </section>
     );
   }
 
-  // 🔹 Filter Logic (ALL filters required)
+  // const filteredProperties = properties.filter((property) => {
+  //   if (locationParam && property.location !== locationParam) return false;
+  //   if (typeParam && property.houseType !== typeParam) return false;
+
+  //   if (priceParam) {
+  //     const [min, max] = priceParam.split("-").map(Number);
+  //     if (property.price < min || property.price > max) return false;
+  //   }
+
+  //   return true;
+  // });
+
+  const [min, max] = priceParam.split("-").map(Number);
+
   const filteredProperties = properties.filter((property) => {
-    if (property.location !== filters.location) return false;
-    if (property.houseType !== filters.type) return false;
-
-    const [min, max] = filters.price.split("-").map(Number);
-
-    if (property.price < min || property.price > max) {
-      return false;
-    }
-
-    return true;
+    return (
+      property.location === locationParam &&
+      property.houseType === typeParam &&
+      property.price >= min &&
+      property.price <= max
+    );
   });
 
   function handleLoading(id) {
@@ -56,7 +68,6 @@ const PropertySection = () => {
 
       <div className="md:grid">
         <div className="mx-auto w-72 grid md:grid-cols-2 md:w-[750px] md:gap-10">
-          {/* 🔹 If results found */}
           {filteredProperties.length > 0 &&
             filteredProperties.map((property) => (
               <div
@@ -99,11 +110,11 @@ const PropertySection = () => {
               </div>
             ))}
 
-          {/* 🔹 No results found */}
           {filteredProperties.length === 0 && (
             <p className="text-center text-red-500 mt-10 col-span-full">
-              No {filters.type} available in {filters.location} within this
-              price range.
+              No {typeParam || "properties"} available
+              {locationParam && ` in ${locationParam}`}
+              {priceParam && " within this price range"}.
             </p>
           )}
         </div>

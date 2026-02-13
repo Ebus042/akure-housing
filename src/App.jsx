@@ -7,6 +7,7 @@ import SearchSection from "./components/SearchSection";
 import PropertySection from "./components/PropertySection";
 import PropertyDetailsSection from "./components/property/PropertyDetailsSection";
 import BookInpection from "./components/booking/BookInpection";
+import StartPage from "./components/StartPage";
 
 const HeaderLayout = () => (
   <>
@@ -20,10 +21,11 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route element={<HeaderLayout />}>
+        <Route path="/" element={<StartPage />} />
+        <Route path="/home" element={<HeaderLayout />}>
           {/* <Route path="/search" element={<SearchSection />} /> */}
 
-          <Route path="/" element={<PropertySection />} />
+          <Route index element={<PropertySection />} />
         </Route>
         <Route path="/property/:id" element={<PropertyDetailsSection />} />
         <Route path="/book-inspection" element={<BookInpection />} />
