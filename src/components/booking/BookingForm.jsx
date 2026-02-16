@@ -1,7 +1,37 @@
 import { ChevronRight } from "lucide-react";
-import React from "react";
+import { useState } from "react";
+import emailjs from "@emailjs/browser";
+import { useRef } from "react";
 
-const BookingForm = () => {
+const BookingForm = ({ property }) => {
+  const [modal, setModal] = useState({
+    show: false,
+    type: "", // "success" or "error"
+  });
+
+  const form = useRef();
+
+  const sendEmail = (e) => {
+    e.preventDefault();
+
+    emailjs
+      .sendForm(
+        "service_26qmlbm",
+        "template_uf127bg",
+        form.current,
+        "ItwcPnzp33zLoylGV",
+      )
+      .then(
+        () => {
+          setModal({ show: true, type: "success" });
+          form.current.reset();
+        },
+        () => {
+          setModal({ show: true, type: "error" });
+        },
+      );
+  };
+
   return (
     <div className="mx-4 my-10 md:w-[500px] md:mx-auto">
       <div>
@@ -11,7 +41,7 @@ const BookingForm = () => {
           property. We will contact you to confirm the details.
         </p>
       </div>
-      <form action="" className="grid gap-4">
+      <form ref={form} onSubmit={sendEmail} className="grid gap-4">
         <div>
           {/* <label htmlFor="name">Full Name</label> */}
           <input
@@ -83,6 +113,12 @@ const BookingForm = () => {
             Select Time
           </label>
         </div>
+        <input
+          type="hidden"
+          name="house"
+          value={`${property?.title} - 
+        ${property?.location} - ₦${property?.price}`}
+        />
         <button
           type="submit"
           className="block text-lg font-bold my-5 border-2 w-[300px]
@@ -91,7 +127,44 @@ const BookingForm = () => {
           Confirm Appointment
           <ChevronRight className="w-5 h-5 text-white inline-block mx-2" />
         </button>
+
+        <p className="font-bold mb-4">
+          Booking for: {property?.title} in {property?.location} with a price
+          range of ₦{property?.price.toLocaleString()} per year.
+        </p>
       </form>
+      {modal.show && (
+        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
+          <div className="bg-white p-6 rounded-lg w-80 text-center shadow-lg">
+            {modal.type === "success" ? (
+              <>
+                <h3 className="text-green-700 font-bold text-lg">
+                  Booking Successful 🎉
+                </h3>
+                <p className="mt-2 text-gray-600">
+                  Your inspection request has been sent.
+                </p>
+              </>
+            ) : (
+              <>
+                <h3 className="text-red-600 font-bold text-lg">
+                  Booking Failed ❌
+                </h3>
+                <p className="mt-2 text-gray-600">
+                  Something went wrong. Please try again.
+                </p>
+              </>
+            )}
+
+            <button
+              onClick={() => setModal({ show: false, type: "" })}
+              className="mt-4 px-4 py-2 bg-green-900 text-white rounded-md"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

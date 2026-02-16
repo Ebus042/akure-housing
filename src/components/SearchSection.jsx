@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { motion } from "framer-motion";
 
 const SearchSection = () => {
   const navigate = useNavigate();
@@ -41,11 +42,19 @@ const SearchSection = () => {
 
   return (
     <section>
-      <h1 className="text-center text-2xl font-bold my-10">
+      <motion.h1
+        initial={{ opacity: 0, y: -100 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 1 }}
+        className="text-center text-2xl font-bold my-10"
+      >
         Find Your Home in Akure
-      </h1>
+      </motion.h1>
 
-      <div
+      <motion.div
+        initial={{ opacity: 0, y: 100 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 1 }}
         className="grid grid-cols-2 md:grid-cols-4 gap-5 my-4 mx-10
         md:gap-10 md:mx-auto md:w-[650px]"
       >
@@ -100,11 +109,11 @@ const SearchSection = () => {
         <button
           onClick={handleSearch}
           className="text-xl border-2 w-[150px]
-          bg-green-900 px-4 py-1 text-white rounded-md"
+          bg-green-900 px-4 py-1 text-white rounded-md hover:bg-green-500"
         >
           Search
         </button>
-      </div>
+      </motion.div>
     </section>
   );
 };

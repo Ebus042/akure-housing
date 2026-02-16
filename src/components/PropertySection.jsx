@@ -29,18 +29,6 @@ const PropertySection = () => {
     );
   }
 
-  // const filteredProperties = properties.filter((property) => {
-  //   if (locationParam && property.location !== locationParam) return false;
-  //   if (typeParam && property.houseType !== typeParam) return false;
-
-  //   if (priceParam) {
-  //     const [min, max] = priceParam.split("-").map(Number);
-  //     if (property.price < min || property.price > max) return false;
-  //   }
-
-  //   return true;
-  // });
-
   const [min, max] = priceParam.split("-").map(Number);
 
   const filteredProperties = properties.filter((property) => {

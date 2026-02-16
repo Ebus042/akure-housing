@@ -13,7 +13,7 @@ const PropertySelected = () => {
   function handleLoading() {
     setLoading(true);
     setTimeout(() => {
-      navigate("/book-inspection");
+      navigate("/book-inspection", { state: { house: property } });
     }, 1000);
   }
 
