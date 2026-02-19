@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import { properties } from "../../data";
 import { useNavigate, useSearchParams } from "react-router-dom";
 
 const PropertySection = () => {
@@ -7,15 +6,23 @@ const PropertySection = () => {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
 
+  const [properties, setProperties] = useState([]);
+
+  const locationParam = searchParams.get("location");
+  const typeParam = searchParams.get("type");
+  const priceParam = searchParams.get("price");
+
+  useEffect(() => {
+    fetch("http://172.20.10.4:5000/api/properties")
+      .then((res) => res.json())
+      .then((data) => setProperties(data));
+  }, []);
+
   useEffect(() => {
     if (locationParam && typeParam && priceParam) {
       navigate("/home", { replace: true });
     }
   }, []);
-
-  const locationParam = searchParams.get("location");
-  const typeParam = searchParams.get("type");
-  const priceParam = searchParams.get("price");
 
   // If page opened without filters
   if (!locationParam || !typeParam || !priceParam) {

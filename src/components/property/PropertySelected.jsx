@@ -1,12 +1,19 @@
-import { properties } from "../../../data";
 import { Bath, Bed, ChevronRight, CirclePlus, LocateIcon } from "lucide-react";
 import { useNavigate, useParams } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const PropertySelected = () => {
   const [loading, setLoading] = useState(false);
   const { id } = useParams();
   const navigate = useNavigate();
+
+  const [properties, setProperties] = useState([]);
+
+  useEffect(() => {
+    fetch("http://localhost:5000/api/properties")
+      .then((res) => res.json())
+      .then((data) => setProperties(data));
+  }, []);
 
   const property = properties.find((item) => item.id === parseInt(id));
 

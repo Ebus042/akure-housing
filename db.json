@@ -1,0 +1,16 @@
+{
+  "properties": [
+    {
+      "id": 1,
+      "title": "3 Bedroom Apartment",
+      "location": "Alagbaka",
+      "price": 1000000
+    },
+    {
+      "id": 2,
+      "title": "2 Bedroom Apartment",
+      "location": "Ijapo Estate",
+      "price": 750000
+    }
+  ]
+}
