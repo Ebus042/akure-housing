@@ -33,8 +33,8 @@ const PropertySelected = () => {
       <div className="my-10">
         <h2 className="text-xl font-bold my-2 md:text-3xl">{property.title}</h2>
         <p className="text-green-900 font-bold text-lg md:text-xl mb-5">
-          {property.price}{" "}
-          <span className="font-normal text-black">per year</span>
+          ₦{property.price.toLocaleString()}
+          <span className="font-normal text-black"> per year</span>
         </p>
         <div className="md:flex md:gap-10">
           {/* LEFT SIDE — Image */}

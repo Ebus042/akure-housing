@@ -4,6 +4,7 @@ import emailjs from "@emailjs/browser";
 import { useRef } from "react";
 
 const BookingForm = ({ property }) => {
+  const [isLoading, setIsLoading] = useState(false);
   const [modal, setModal] = useState({
     show: false,
     type: "", // "success" or "error"
@@ -11,8 +12,25 @@ const BookingForm = ({ property }) => {
 
   const form = useRef();
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    setIsLoading(true);
+
+    setTimeout(() => {
+      setIsLoading(false);
+
+      setModal({
+        show: true,
+        type: "success", // or "error"
+      });
+    }, 2000); // 2 seconds loading
+  };
+
   const sendEmail = (e) => {
     e.preventDefault();
+
+    setIsLoading(true); // start spinner
 
     emailjs
       .sendForm(
@@ -23,10 +41,12 @@ const BookingForm = ({ property }) => {
       )
       .then(
         () => {
+          setIsLoading(false);
           setModal({ show: true, type: "success" });
           form.current.reset();
         },
         () => {
+          setIsLoading(false);
           setModal({ show: true, type: "error" });
         },
       );
@@ -117,17 +137,32 @@ const BookingForm = ({ property }) => {
           type="hidden"
           name="house"
           value={`${property?.title} - 
-        ${property?.location} - ₦${property?.price}`}
+        ${property?.location} - ₦${property?.price.toLocaleString()} per year`}
         />
         <button
           type="submit"
-          className="block text-lg font-bold my-5 border-2 w-[300px]
-         bg-green-900 px-4 py-1 text-white rounded-md mx-auto"
+          disabled={isLoading}
+          className={`text-lg font-bold my-5 border-2 w-[300px]
+    px-4 py-2 text-white rounded-md mx-auto flex items-center justify-center gap-2
+    ${
+      isLoading
+        ? "bg-green-700 cursor-not-allowed"
+        : "bg-green-900 hover:bg-green-800"
+    }
+  `}
         >
-          Confirm Appointment
-          <ChevronRight className="w-5 h-5 text-white inline-block mx-2" />
+          {isLoading ? (
+            <>
+              <span className="animate-spin rounded-full h-5 w-5 border-2 border-white border-t-transparent"></span>
+              Processing...
+            </>
+          ) : (
+            <>
+              Confirm Appointment
+              <ChevronRight className="w-5 h-5 text-white" />
+            </>
+          )}
         </button>
-
         <p className="font-bold mb-4">
           Booking for: {property?.title} in {property?.location} with a price
           range of ₦{property?.price.toLocaleString()} per year.
@@ -142,7 +177,8 @@ const BookingForm = ({ property }) => {
                   Booking Successful 🎉
                 </h3>
                 <p className="mt-2 text-gray-600">
-                  Your inspection request has been sent.
+                  Your inspection request has been sent. Please check your email
+                  for confirmation and further details.
                 </p>
               </>
             ) : (

@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import bgImg from "../assets/images/bgImg.png";
-import realtorImg from "../assets/images/homebg2Img.png";
+import realtorImg from "../assets/images/startImg.png";
 import { useState } from "react";
 // import { Swiper, SwiperSlide } from "swiper/react";
 import { motion } from "framer-motion";
@@ -38,9 +38,7 @@ const StartPage = () => {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 1 }}
             className="text-5xl mt-10 sm:text-4xl lg:text-6xl 
-          md:text-5xl bg-gradient-to-bl
-         from-green-800  to-green-900 bg-clip-text 
-        text-transparent line-clamp-2 my-2 
+          md:text-5xl text-white my-2 
         md:text-green-900 lg:text-white/100
      font-bold"
           >
