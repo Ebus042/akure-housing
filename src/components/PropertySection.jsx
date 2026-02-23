@@ -15,9 +15,11 @@ const PropertySection = () => {
   useEffect(() => {
     fetch("http://172.20.10.4:5000/api/properties")
       .then((res) => res.json())
-      .then((data) => setProperties(data));
+      .then((data) => {
+        console.log("API DATA:", data);
+        setProperties(data);
+      });
   }, []);
-
   // If page opened without filters
   if (!locationParam || !typeParam || !priceParam) {
     return (
