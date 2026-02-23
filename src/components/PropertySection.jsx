@@ -18,12 +18,6 @@ const PropertySection = () => {
       .then((data) => setProperties(data));
   }, []);
 
-  useEffect(() => {
-    if (locationParam && typeParam && priceParam) {
-      navigate("/home", { replace: true });
-    }
-  }, []);
-
   // If page opened without filters
   if (!locationParam || !typeParam || !priceParam) {
     return (
