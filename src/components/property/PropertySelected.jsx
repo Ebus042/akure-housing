@@ -11,7 +11,7 @@ const PropertySelected = () => {
   const [properties, setProperties] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:5000/api/properties")
+    fetch(`${import.meta.env.VITE_API_URL}/api/properties`)
       .then((res) => res.json())
       .then((data) => setProperties(data));
   }, []);
@@ -25,10 +25,13 @@ const PropertySelected = () => {
     }, 1000);
   }
 
+  if (!properties.length) {
+    return <p className="text-center mt-10">Loading property...</p>;
+  }
+
   if (!property) {
     return <p className="text-center mt-10">Property not found.</p>;
   }
-
   return (
     <section className="mx-5">
       <div className="my-10">
@@ -47,9 +50,9 @@ const PropertySelected = () => {
               className="relative w-full aspect-[4/3] rounded-lg overflow-hidden"
             >
               <img
-                src={property.images[0]}
-                className="w-full h-full object-cover"
-                alt=""
+                src={`${import.meta.env.VITE_API_URL}${property.images[0]}`}
+                className="w-full aspect-[4/3] object-cover"
+                alt="House"
               />
 
               <p className="absolute top-2 left-2 bg-green-900 text-white px-3 py-1 rounded text-sm">
@@ -107,17 +110,12 @@ const PropertySelected = () => {
 
         <div className="grid md:grid-cols-3 gap-4">
           {property.images.slice(1).map((image, index) => (
-            <div
+            <img
               key={index}
-              onClick={() => setSelectedImage(image)}
-              className="w-full aspect-[4/3] rounded-lg overflow-hidden cursor-pointer"
-            >
-              <img
-                src={image}
-                className="w-full h-full rounded-lg object-cover hover:scale-105 transition duration-300"
-                alt=""
-              />
-            </div>
+              src={`${import.meta.env.VITE_API_URL}${image}`}
+              className="w-full h-full object-cover"
+              alt=""
+            />
           ))}
           {selectedImage && (
             <div
@@ -129,9 +127,13 @@ const PropertySelected = () => {
                 onClick={(e) => e.stopPropagation()}
               >
                 <img
-                  src={selectedImage}
+                  key={index}
+                  onClick={() =>
+                    setSelectedImage(`${import.meta.env.VITE_API_URL}${image}`)
+                  }
+                  src={`${import.meta.env.VITE_API_URL}${image}`}
+                  className="w-full h-full object-cover cursor-pointer"
                   alt=""
-                  className="w-full max-h-[90vh] object-contain rounded-lg"
                 />
 
                 <button

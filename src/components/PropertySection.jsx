@@ -13,12 +13,9 @@ const PropertySection = () => {
   const priceParam = searchParams.get("price");
 
   useEffect(() => {
-    fetch("http://172.20.10.4:5000/api/properties")
+    fetch(`${import.meta.env.VITE_API_URL}/api/properties`)
       .then((res) => res.json())
-      .then((data) => {
-        console.log("API DATA:", data);
-        setProperties(data);
-      });
+      .then((data) => setProperties(data));
   }, []);
   // If page opened without filters
   if (!locationParam || !typeParam || !priceParam) {
@@ -66,7 +63,7 @@ const PropertySection = () => {
                 className="grid border-2 my-5 rounded-t-xl overflow-hidden gap-6"
               >
                 <img
-                  src={property.images[0]}
+                  src={`${import.meta.env.VITE_API_URL}${property.images[0]}`}
                   className="w-full aspect-[4/3] object-cover"
                   alt="House"
                 />
