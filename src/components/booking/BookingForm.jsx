@@ -121,7 +121,7 @@ const BookingForm = ({ property }) => {
           <p className="text-sm text-gray-500 mt-1">DD-MM-YYYY</p>
         </div>
 
-        <div>
+        <div className="relative">
           <label htmlFor="time" className="block mb-1 text-sm font-medium">
             Select Time
           </label>
@@ -132,7 +132,7 @@ const BookingForm = ({ property }) => {
             required
             className="border-2  rounded-md w-full p-3 text-lg min-h-[44px] appearance-none"
           />
-          <Clock className="absolute right-3 top-[50%] transform -translate-y-1/2 text-gray-500" />
+          <Clock className="absolute left-3 top-[45px] w-5 h-5 pointer-events-none text-gray-500" />
         </div>
 
         <input
