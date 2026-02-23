@@ -98,37 +98,38 @@ const BookingForm = ({ property }) => {
             required
           />
         </div>
-        <div className="relative w-full">
+        <div>
           <input
-            className="border-2 peer focus:outline-none pt-5 rounded-md w-full p-2"
             type="date"
             id="date"
             name="date"
             required
+            className="border-2 rounded-md w-full p-3 text-lg appearance-none min-h-[44px]"
           />
+
           <label
             htmlFor="date"
             className="absolute left-3 top-2 text-gray-500 text-sm transition-all 
-               peer-focus:text-xs peer-focus:-top-2 peer-focus:bg-white appearance-none
-               peer-focus:px-1 peer-valid:text-xs peer-valid:-top-2 peer-valid:bg-white peer-valid:px-1"
+peer-focus:text-xs peer-focus:-top-2 peer-focus:bg-white 
+peer-focus:px-1"
           >
             Select Date
           </label>
         </div>
-        <div className="relative w-full">
+        <div>
           <input
-            className="border-2 peer focus:outline-none pt-5 rounded-md w-full p-2
-            placeholder:text-gray-950 text-xl"
             type="time"
             id="time"
             name="time"
             required
+            className="border-2 rounded-md w-full p-3 text-lg appearance-none min-h-[44px]"
           />
+
           <label
-            htmlFor="date"
+            htmlFor="time"
             className="absolute left-3 top-2 text-gray-500 text-sm transition-all 
-               peer-focus:text-xs peer-focus:-top-2 peer-focus:bg-white appearance-none
-               peer-focus:px-1 peer-valid:text-xs peer-valid:-top-2 peer-valid:bg-white peer-valid:px-1"
+peer-focus:text-xs peer-focus:-top-2 peer-focus:bg-white 
+peer-focus:px-1"
           >
             Select Time
           </label>
