@@ -118,7 +118,7 @@ const BookingForm = ({ property }) => {
             required
             className="border-2 rounded-md w-full p-3 text-lg min-h-[44px] appearance-none"
           />
-          <p className="absolute left-3 top-[25px] text-sm text-gray-500 mt-1">
+          <p className="absolute left-3 top-[50%] text-sm text-gray-500 mt-1">
             DD-MM-YYYY
           </p>
         </div>
@@ -134,7 +134,7 @@ const BookingForm = ({ property }) => {
             required
             className="border-2  rounded-md w-full p-3 text-lg min-h-[44px] appearance-none"
           />
-          <Clock className="absolute left-3 top-[25px] w-5 h-5 pointer-events-none text-gray-500" />
+          <Clock className="absolute left-3 top-[50%] w-5 h-5 pointer-events-none text-gray-500" />
         </div>
 
         <input
