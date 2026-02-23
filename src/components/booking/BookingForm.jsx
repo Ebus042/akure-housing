@@ -98,7 +98,7 @@ const BookingForm = ({ property }) => {
             required
           />
         </div>
-        <div>
+        {/* <div>
           <input
             type="date"
             id="date"
@@ -106,7 +106,7 @@ const BookingForm = ({ property }) => {
             required
             className="border-2 rounded-md w-full p-3 text-lg appearance-none min-h-[44px]"
           />
-        </div>
+        </div> */}
         <div>
           <label htmlFor="date" className="block mb-1 text-sm font-medium">
             Select Date
@@ -116,7 +116,7 @@ const BookingForm = ({ property }) => {
             id="date"
             name="date"
             required
-            className="border-2 rounded-md w-full p-3 text-lg min-h-[44px]"
+            className="border-2 rounded-md w-full p-3 text-lg min-h-[44px] appearance-none"
           />
         </div>
 
@@ -129,16 +129,16 @@ const BookingForm = ({ property }) => {
             id="time"
             name="time"
             required
-            className="border-2 rounded-md w-full p-3 text-lg min-h-[44px]"
+            className="border-2 rounded-md w-full p-3 text-lg min-h-[44px] appearance-none"
           />
         </div>
 
-        <input
+        {/* <input
           type="hidden"
           name="house"
           value={`${property?.title} - 
         ${property?.location} - ₦${property?.price.toLocaleString()} per year`}
-        />
+        /> */}
         <button
           type="submit"
           disabled={isLoading}
