@@ -1,4 +1,4 @@
-import { ChevronRight } from "lucide-react";
+import { ChevronRight, Clock } from "lucide-react";
 import { useState } from "react";
 import emailjs from "@emailjs/browser";
 import { useRef } from "react";
@@ -118,6 +118,7 @@ const BookingForm = ({ property }) => {
             required
             className="border-2 rounded-md w-full p-3 text-lg min-h-[44px] appearance-none"
           />
+          <p className="text-sm text-gray-500 mt-1">DD-MM-YYYY</p>
         </div>
 
         <div>
@@ -129,16 +130,17 @@ const BookingForm = ({ property }) => {
             id="time"
             name="time"
             required
-            className="border-2 rounded-md w-full p-3 text-lg min-h-[44px] appearance-none"
+            className="border-2  rounded-md w-full p-3 text-lg min-h-[44px] appearance-none"
           />
+          <Clock className="absolute right-3 top-[50%] transform -translate-y-1/2 text-gray-500" />
         </div>
 
-        {/* <input
+        <input
           type="hidden"
           name="house"
           value={`${property?.title} - 
         ${property?.location} - ₦${property?.price.toLocaleString()} per year`}
-        /> */}
+        />
         <button
           type="submit"
           disabled={isLoading}
