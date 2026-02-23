@@ -3,6 +3,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 
 const PropertySelected = () => {
+  const [selectedImage, setSelectedImage] = useState(null);
   const [loading, setLoading] = useState(false);
   const { id } = useParams();
   const navigate = useNavigate();
@@ -108,16 +109,40 @@ const PropertySelected = () => {
           {property.images.slice(1).map((image, index) => (
             <div
               key={index}
-              className="
-            w-full aspect-[4/3] rounded-lg overflow-hidden"
+              onClick={() => setSelectedImage(image)}
+              className="w-full aspect-[4/3] rounded-lg overflow-hidden cursor-pointer"
             >
               <img
                 src={image}
-                className="w-full h-full rounded-lg object-cover"
+                className="w-full h-full rounded-lg object-cover hover:scale-105 transition duration-300"
                 alt=""
               />
             </div>
           ))}
+          {selectedImage && (
+            <div
+              className="fixed inset-0 bg-black/80 flex items-center justify-center z-50 p-4"
+              onClick={() => setSelectedImage(null)}
+            >
+              <div
+                className="relative max-w-4xl w-full"
+                onClick={(e) => e.stopPropagation()}
+              >
+                <img
+                  src={selectedImage}
+                  alt=""
+                  className="w-full max-h-[90vh] object-contain rounded-lg"
+                />
+
+                <button
+                  onClick={() => setSelectedImage(null)}
+                  className="absolute top-4 right-4 text-white text-2xl"
+                >
+                  ✕
+                </button>
+              </div>
+            </div>
+          )}
         </div>
       </div>
     </section>

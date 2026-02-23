@@ -2,9 +2,14 @@ import { ChevronRight, Clock } from "lucide-react";
 import { useState } from "react";
 import emailjs from "@emailjs/browser";
 import { useRef } from "react";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+import { format } from "date-fns";
 
 const BookingForm = ({ property }) => {
   const [isLoading, setIsLoading] = useState(false);
+  const [selectedDate, setSelectedDate] = useState(null);
+  const [selectedTime, setSelectedTime] = useState(null);
   const [modal, setModal] = useState({
     show: false,
     type: "", // "success" or "error"
@@ -107,35 +112,53 @@ const BookingForm = ({ property }) => {
             className="border-2 rounded-md w-full p-3 text-lg appearance-none min-h-[44px]"
           />
         </div> */}
-        <div className="relative">
-          <label htmlFor="date" className="block mb-1 text-sm font-medium">
-            Select Date
-          </label>
-          <input
-            type="date"
-            id="date"
-            name="date"
-            required
-            className="border-2 rounded-md w-full p-3 text-lg min-h-[44px] appearance-none"
+        <div>
+          <label className="block mb-1 text-sm font-medium">Select Date</label>
+
+          <DatePicker
+            selected={selectedDate}
+            onChange={(date) => setSelectedDate(date)}
+            dateFormat="dd-MM-yyyy"
+            placeholderText="DD-MM-YYYY"
+            className="border-2 rounded-md w-full p-3 text-lg"
+            minDate={new Date()}
           />
-          <p className="absolute left-3 top-[50%] text-sm text-gray-500 mt-1">
-            DD-MM-YYYY
-          </p>
         </div>
 
-        <div className="relative">
-          <label htmlFor="time" className="block mb-1 text-sm font-medium">
-            Select Time
-          </label>
-          <input
-            type="time"
-            id="time"
-            name="time"
-            required
-            className="border-2  rounded-md w-full p-3 text-lg min-h-[44px] appearance-none"
+        <div>
+          <label className="block mb-1 text-sm font-medium">Select Time</label>
+
+          <DatePicker
+            selected={selectedTime}
+            onChange={(time) => setSelectedTime(time)}
+            showTimeSelect
+            showTimeSelectOnly
+            timeIntervals={30}
+            timeCaption="Time"
+            dateFormat="hh:mm aa"
+            placeholderText="Select Time"
+            className="border-2 rounded-md w-full p-3 text-lg"
+            minTime={
+              selectedDate &&
+              selectedDate.toDateString() === new Date().toDateString()
+                ? new Date()
+                : new Date(0, 0, 0, 9, 0) // 9:00 AM
+            }
+            maxTime={new Date(0, 0, 0, 18, 0)} // 6:00 PM
           />
-          <Clock className="absolute left-3 top-[50%] w-5 h-5 pointer-events-none text-gray-500" />
         </div>
+
+        <input
+          type="hidden"
+          name="date"
+          value={selectedDate ? format(selectedDate, "dd-MM-yyyy") : ""}
+        />
+
+        <input
+          type="hidden"
+          name="time"
+          value={selectedTime ? format(selectedTime, "hh:mm aa") : ""}
+        />
 
         <input
           type="hidden"
