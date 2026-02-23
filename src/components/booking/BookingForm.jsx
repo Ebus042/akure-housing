@@ -107,7 +107,7 @@ const BookingForm = ({ property }) => {
             className="border-2 rounded-md w-full p-3 text-lg appearance-none min-h-[44px]"
           />
         </div> */}
-        <div>
+        <div className="relative">
           <label htmlFor="date" className="block mb-1 text-sm font-medium">
             Select Date
           </label>
@@ -118,7 +118,9 @@ const BookingForm = ({ property }) => {
             required
             className="border-2 rounded-md w-full p-3 text-lg min-h-[44px] appearance-none"
           />
-          <p className="text-sm text-gray-500 mt-1">DD-MM-YYYY</p>
+          <p className="absolute left-3 top-[45px] text-sm text-gray-500 mt-1">
+            DD-MM-YYYY
+          </p>
         </div>
 
         <div className="relative">
