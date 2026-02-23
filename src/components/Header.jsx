@@ -30,53 +30,64 @@ const Header = () => {
           onClick={() => setIsMenuOpen(false)}
         />
 
-        <ul
+        <div
           className={`
-    fixed top-0 right-0 h-screen w-64
-    bg-white shadow-lg
-    flex flex-col items-center gap-6 pt-20
+    fixed top-0 right-0 h-screen w-52
+    bg-white shadow-lg text-lg
+    flex flex-col items-start gap-3 pt-16
     transform transition-transform duration-300 ease-in-out
     ${isMenuOpen ? "translate-x-0" : "translate-x-full"}
     lg:hidden
   `}
         >
-          {/* Close button */}
-          <button
-            onClick={() => setIsMenuOpen(false)}
-            className="absolute top-5 right-5 text-green-800"
-          >
-            <X size={24} />
-          </button>
-          <li>
-            <Link to="/home" className="hover:text-green-800 transition">
-              Properties
-            </Link>
-          </li>
-
-          <li>
-            <Link
-              to="/book-inspection"
-              className="hover:text-green-800 transition"
+          <ul className="flex flex-col items-start gap-5 mx-4">
+            {/* Close button */}
+            <button
+              onClick={() => setIsMenuOpen(false)}
+              className="absolute top-5 right-5 text-green-800"
             >
-              Book Inspection
-            </Link>
-          </li>
+              <X size={24} />
+            </button>
+            <li>
+              <Link
+                to="/home"
+                className="hover:text-green-800 hover:text-xl 
+                hover:scale-75 hover:duration-300 hover:transition-all hover:ease-in-out"
+              >
+                Properties
+              </Link>
+            </li>
 
-          <li>
-            <Link to="/contact" className="hover:text-green-800 transition">
-              Contact
-            </Link>
-          </li>
+            <li>
+              <Link
+                to="/book-inspection"
+                className="hover:text-green-800 hover:text-xl 
+                hover:scale-75 hover:duration-300 hover:transition-all hover:ease-in-out"
+              >
+                Book Inspection
+              </Link>
+            </li>
 
-          <li>
-            <Link
-              to="/home"
-              className="bg-green-900 px-3 py-1 text-white rounded-md hover:bg-green-800 transition"
-            >
-              Search
-            </Link>
-          </li>
-        </ul>
+            <li>
+              <Link
+                to="/contact"
+                className="hover:text-green-800 hover:text-xl 
+                hover:scale-75 hover:duration-300 hover:transition-all hover:ease-in-out"
+              >
+                Contact
+              </Link>
+            </li>
+
+            <li>
+              <Link
+                to="/home"
+                className="bg-green-900 px-3 py-1 text-white rounded-md hover:bg-green-800 transition"
+              >
+                Search
+              </Link>
+            </li>
+          </ul>
+        </div>
 
         <ul className="hidden lg:flex items-center text-sm gap-4 md:gap-8 mx-4 md:text-xl">
           <li>

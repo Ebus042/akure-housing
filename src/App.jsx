@@ -9,6 +9,8 @@ import PropertyDetailsSection from "./components/property/PropertyDetailsSection
 import BookInpection from "./components/booking/BookInpection";
 import StartPage from "./components/StartPage";
 
+import ContactSection from "./components/ContactSection";
+
 const HeaderLayout = () => (
   <>
     <Header />
@@ -29,6 +31,7 @@ function App() {
         </Route>
         <Route path="/property/:id" element={<PropertyDetailsSection />} />
         <Route path="/book-inspection" element={<BookInpection />} />
+        <Route path="/contact" element={<ContactSection />} />
       </Routes>
     </BrowserRouter>
   );

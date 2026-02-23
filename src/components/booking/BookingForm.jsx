@@ -109,7 +109,7 @@ const BookingForm = ({ property }) => {
           <label
             htmlFor="date"
             className="absolute left-3 top-2 text-gray-500 text-sm transition-all 
-               peer-focus:text-xs peer-focus:-top-2 peer-focus:bg-white 
+               peer-focus:text-xs peer-focus:-top-2 peer-focus:bg-white appearance-none
                peer-focus:px-1 peer-valid:text-xs peer-valid:-top-2 peer-valid:bg-white peer-valid:px-1"
           >
             Select Date
@@ -127,7 +127,7 @@ const BookingForm = ({ property }) => {
           <label
             htmlFor="date"
             className="absolute left-3 top-2 text-gray-500 text-sm transition-all 
-               peer-focus:text-xs peer-focus:-top-2 peer-focus:bg-white 
+               peer-focus:text-xs peer-focus:-top-2 peer-focus:bg-white appearance-none
                peer-focus:px-1 peer-valid:text-xs peer-valid:-top-2 peer-valid:bg-white peer-valid:px-1"
           >
             Select Time
