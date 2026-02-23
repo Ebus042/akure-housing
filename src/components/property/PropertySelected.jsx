@@ -109,14 +109,20 @@ const PropertySelected = () => {
         </div>
 
         <div className="grid md:grid-cols-3 gap-4">
-          {property.images.slice(1).map((image, index) => (
+          {/* Gallery Images */}
+          {property?.images?.slice(1).map((image, index) => (
             <img
               key={index}
+              onClick={() =>
+                setSelectedImage(`${import.meta.env.VITE_API_URL}${image}`)
+              }
               src={`${import.meta.env.VITE_API_URL}${image}`}
-              className="w-full h-full object-cover"
-              alt=""
+              className="w-full aspect-[4/3] object-cover cursor-pointer"
+              alt="House"
             />
           ))}
+
+          {/* Modal */}
           {selectedImage && (
             <div
               className="fixed inset-0 bg-black/80 flex items-center justify-center z-50 p-4"
@@ -127,13 +133,9 @@ const PropertySelected = () => {
                 onClick={(e) => e.stopPropagation()}
               >
                 <img
-                  key={index}
-                  onClick={() =>
-                    setSelectedImage(`${import.meta.env.VITE_API_URL}${image}`)
-                  }
-                  src={`${import.meta.env.VITE_API_URL}${image}`}
-                  className="w-full h-full object-cover cursor-pointer"
-                  alt=""
+                  src={selectedImage}
+                  className="w-full max-h-[90vh] object-contain rounded-lg"
+                  alt="Preview"
                 />
 
                 <button
