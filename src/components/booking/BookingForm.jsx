@@ -106,16 +106,16 @@ const BookingForm = ({ property }) => {
             required
             className="border-2 rounded-md w-full p-3 text-lg appearance-none min-h-[44px]"
           />
-
-          <label
-            htmlFor="date"
-            className="absolute left-3 top-2 text-gray-500 text-sm transition-all 
+        </div>
+        <label
+          htmlFor="date"
+          className="absolute left-3 top-2 text-gray-500 text-sm transition-all 
 peer-focus:text-xs peer-focus:-top-2 peer-focus:bg-white 
 peer-focus:px-1"
-          >
-            Select Date
-          </label>
-        </div>
+        >
+          Select Date
+        </label>
+
         <div>
           <input
             type="time"
@@ -124,16 +124,17 @@ peer-focus:px-1"
             required
             className="border-2 rounded-md w-full p-3 text-lg appearance-none min-h-[44px]"
           />
+        </div>
 
-          <label
-            htmlFor="time"
-            className="absolute left-3 top-2 text-gray-500 text-sm transition-all 
+        <label
+          htmlFor="time"
+          className="absolute left-3 top-2 text-gray-500 text-sm transition-all 
 peer-focus:text-xs peer-focus:-top-2 peer-focus:bg-white 
 peer-focus:px-1"
-          >
-            Select Time
-          </label>
-        </div>
+        >
+          Select Time
+        </label>
+
         <input
           type="hidden"
           name="house"
