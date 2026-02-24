@@ -37,7 +37,13 @@ const SearchSection = () => {
     if (selectedType) query.append("type", selectedType);
     if (selectedPriceRange) query.append("price", selectedPriceRange);
 
-    navigate(`/home?${query.toString()}`);
+    navigate("/home", {
+      state: {
+        location: selectedLocation,
+        type: selectedType,
+        price: selectedPriceRange,
+      },
+    });
   };
 
   return (

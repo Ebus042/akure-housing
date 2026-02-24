@@ -1,21 +1,28 @@
 import { useState, useEffect } from "react";
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 
 const PropertySection = () => {
   const [loadingId, setLoadingId] = useState(null);
   const navigate = useNavigate();
-  const [searchParams] = useSearchParams();
+  const locationHook = useLocation();
 
   const [properties, setProperties] = useState([]);
 
-  const locationParam = searchParams.get("location");
-  const typeParam = searchParams.get("type");
-  const priceParam = searchParams.get("price");
+  const filters = locationHook.state;
+
+  const locationParam = filters?.location;
+  const typeParam = filters?.type;
+  const priceParam = filters?.price;
 
   useEffect(() => {
     fetch(`${import.meta.env.VITE_API_URL}/api/properties`)
       .then((res) => res.json())
       .then((data) => setProperties(data));
+  }, []);
+  useEffect(() => {
+    if (locationParam || typeParam || priceParam) {
+      window.history.replaceState({}, "", "/home");
+    }
   }, []);
   // If page opened without filters
   if (!locationParam || !typeParam || !priceParam) {
@@ -29,15 +36,22 @@ const PropertySection = () => {
     );
   }
 
-  const [min, max] = priceParam.split("-").map(Number);
+  const [min, max] = priceParam
+    ? priceParam.split("-").map(Number)
+    : [0, Infinity];
 
   const filteredProperties = properties.filter((property) => {
-    return (
-      property.location === locationParam &&
-      property.houseType === typeParam &&
-      property.price >= min &&
-      property.price <= max
-    );
+    const matchesLocation = locationParam
+      ? property.location === locationParam
+      : true;
+
+    const matchesType = typeParam ? property.houseType === typeParam : true;
+
+    const matchesPrice = priceParam
+      ? property.price >= min && property.price <= max
+      : true;
+
+    return matchesLocation && matchesType && matchesPrice;
   });
 
   function handleLoading(id) {
